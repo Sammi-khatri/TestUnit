@@ -2,7 +2,8 @@ package sam.TestUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Assert;
+
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ class TestUnitApplicationTests {
 	@DisplayName("testInt")
 	void testInt() {
 		int a = 10;
-		Assert.assertEquals(a, a);
+		assertEquals(a, a);
 	}
 
 	@Test
@@ -42,6 +43,15 @@ class TestUnitApplicationTests {
 		} catch (Exception e) {
 			System.out.println("exception : " + e.getLocalizedMessage());
 		}
+	}
+
+	@Test
+	public void testTwo(){
+		assertEquals("one","one");
+	}
+	@AfterAll
+	public static void testAfter(){
+		assertEquals(10,10);
 	}
 
 }
