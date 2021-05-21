@@ -50,7 +50,7 @@ class TestUnitApplicationTests {
 		assertEquals("one","one");
 	}
 	@AfterAll
-	public void testAfter(){
+	public static void testAfter(){
 		assertEquals(10,10);
 	}
 
