@@ -1,5 +1,9 @@
 package sam.TestUnit;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
+
 public class MergeOne {
-    //nothing to do its just test merge application
+    public void changeInBrach(){
+        System.out.println("cbhdbvhj");
+    }
 }
