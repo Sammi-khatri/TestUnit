@@ -45,6 +45,10 @@ class TestUnitApplicationTests {
 		}
 	}
 
+	@Test
+	public void testTwo(){
+		assertEquals("one","one");
+	}
 	@AfterAll
 	public void testAfter(){
 		assertEquals(10,10);
