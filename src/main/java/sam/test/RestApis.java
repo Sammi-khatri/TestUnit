@@ -18,5 +18,6 @@ public class RestApis {
 		System.out.println("test APi called");
 		return "Success";
 	}
+
 }
 	
