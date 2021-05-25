@@ -1,9 +1,13 @@
 package sam.test;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class TestUnitHelper {
     List<TestUnitPojo> pojoList = new ArrayList<>();
 

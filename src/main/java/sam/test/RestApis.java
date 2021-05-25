@@ -1,23 +1,43 @@
 package sam.test;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
+import java.util.List;
 
 @RestController
 @RequestMapping("/")
 public class RestApis {
-	@GetMapping("/products")
-	public String test() {
-		System.out.println("test APi called");
-		return "Success";
-	}
+    @Autowired
+    TestUnitHelper testUnitHelper;
 
-	@GetMapping("/")
-	private String test1() {
-		System.out.println("test APi called");
-		return "Success";
-	}
+    @GetMapping("/getAll")
+    public ResponseEntity getAll() {
+        List<TestUnitPojo> pojoList = testUnitHelper.getAll();
+        if (!pojoList.isEmpty())
+            return new ResponseEntity(pojoList.toString(), HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/findById/{id}")
+    private ResponseEntity findById(@PathParam("id") int id) {
+        TestUnitPojo pojoData = testUnitHelper.findById(id);
+        if (pojoData != null)
+            return new ResponseEntity(pojoData.toString(), HttpStatus.OK);
+        else
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/createData")
+    private ResponseEntity createData(@RequestBody TestUnitPojo pojo) {
+        TestUnitPojo p1 = testUnitHelper.createNew(pojo);
+        if (p1 != null) return new ResponseEntity(p1.toString(), HttpStatus.OK);
+        else return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
 
 }
 	
