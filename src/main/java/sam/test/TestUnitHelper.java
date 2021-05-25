@@ -18,10 +18,23 @@ public class TestUnitHelper {
 
     /**
      * Here we find the TestPojo according to id
+     *
      * @param id
-     * @return
+     * @return $ TestUnitPojo
      */
     public TestUnitPojo findById(int id) {
-        return pojoList.stream().filter(pojo->pojo.getId()==id).collect(Collectors.toList()).get(0);
+        return pojoList.stream().filter(pojo -> pojo.getId() == id).collect(Collectors.toList()).get(0);
+    }
+
+    /**
+     * Here we add the pojo in list
+     * @param pojo
+     * @return
+     */
+    public TestUnitPojo createNew(TestUnitPojo pojo) {
+        pojo.setId(6);
+        pojoList.add(pojo);
+        return pojo;
+
     }
 }
