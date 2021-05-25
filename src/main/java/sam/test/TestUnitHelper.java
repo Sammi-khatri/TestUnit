@@ -28,13 +28,22 @@ public class TestUnitHelper {
 
     /**
      * Here we add the pojo in list
+     *
      * @param pojo
-     * @return
+     * @return $ TestUnitPojo
      */
     public TestUnitPojo createNew(TestUnitPojo pojo) {
         pojo.setId(6);
         pojoList.add(pojo);
         return pojo;
 
+    }
+
+    /**
+     * Here we get all the TestUnitPojo list
+     * @return $ List of TestUnitPojo
+     */
+    public List<TestUnitPojo> getAll() {
+        return pojoList;
     }
 }
