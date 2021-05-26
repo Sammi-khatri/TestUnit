@@ -1,5 +1,6 @@
 package sam.test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,7 @@ public class TestingViaRestTemplate {
         datavalue.put("lastName", "10");
         datavalue.put("address", "12");
         datavalue.put("occupation", "job");
-        HttpEntity<String> request = new HttpEntity<>(datavalue.toString(), getHeader());
+        HttpEntity<String> request = new HttpEntity<>(asJsonString(new TestUnitPojo(1,"sdsa","eew","dewede","dede")), getHeader());
         final String uri = "http://localhost:" + port + "/createData";
         ResponseEntity<String> exchange = this.restTemplate.exchange(uri, HttpMethod.POST, request, String.class);
         System.out.println("status : " + exchange.getStatusCode());
@@ -66,10 +67,20 @@ public class TestingViaRestTemplate {
     }
 
     private HttpHeaders getHeader() {
+        String set_cookie = "cookie value";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Cookie", set_cookie);
         headers.setCacheControl("no-cache");
         return headers;
+    }
+
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

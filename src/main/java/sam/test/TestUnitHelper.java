@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 public class TestUnitHelper {
     List<TestUnitPojo> pojoList = new ArrayList<>();
 
+    public TestUnitHelper() {
+    }
+
     public TestUnitHelper(List<TestUnitPojo> pojoList) {
         this.pojoList = pojoList;
         pojoList.add(new TestUnitPojo(1, "Aone", "Asing", "XYZ", "Job"));

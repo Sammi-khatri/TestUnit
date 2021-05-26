@@ -1,6 +1,8 @@
 package sam.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +42,10 @@ public class RestApis {
         if (p1 != null) return new ResponseEntity(p1, HttpStatus.OK);
         else return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
-
+    @Bean
+    @Primary
+    public TestUnitHelper getHelper(){
+        return new TestUnitHelper();
+    }
 }
 	
