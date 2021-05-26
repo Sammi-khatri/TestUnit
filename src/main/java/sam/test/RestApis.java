@@ -18,24 +18,26 @@ public class RestApis {
     public ResponseEntity getAll() {
         List<TestUnitPojo> pojoList = testUnitHelper.getAll();
         if (!pojoList.isEmpty())
-            return new ResponseEntity(pojoList.toString(), HttpStatus.OK);
+            return new ResponseEntity(pojoList, HttpStatus.OK);
         else
             return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/findById/{id}")
-    private ResponseEntity findById(@PathParam("id") int id) {
+    private ResponseEntity findById(@PathVariable("id") int id) {
+        System.out.println("id : "+id);
         TestUnitPojo pojoData = testUnitHelper.findById(id);
         if (pojoData != null)
-            return new ResponseEntity(pojoData.toString(), HttpStatus.OK);
+            return new ResponseEntity(pojoData, HttpStatus.OK);
         else
             return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/createData")
     private ResponseEntity createData(@RequestBody TestUnitPojo pojo) {
+        System.out.println("createData called");
         TestUnitPojo p1 = testUnitHelper.createNew(pojo);
-        if (p1 != null) return new ResponseEntity(p1.toString(), HttpStatus.OK);
+        if (p1 != null) return new ResponseEntity(p1, HttpStatus.OK);
         else return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 

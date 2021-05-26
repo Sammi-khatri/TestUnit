@@ -32,14 +32,17 @@ class TestUnitApplicationTests {
 	public void getProductsList() {
 		try {
 			System.out.println("test Called");
-			String uri = "/products";
+			String uri = "/findById/"+1;
 			MockMvc mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 			MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON_VALUE))
 					.andReturn();
 
 			int status = mvcResult.getResponse().getStatus();
+			String content = mvcResult.getResponse().getContentAsString();
+			System.out.println("status: "+status+" \n content: "+content);
 			assertEquals(200, status);
-//	      String content = mvcResult.getResponse().getContentAsString();
+			assertEquals(200,status);
+
 		} catch (Exception e) {
 			System.out.println("exception : " + e.getLocalizedMessage());
 		}
